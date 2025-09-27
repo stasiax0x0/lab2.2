@@ -23,7 +23,7 @@ def top_n(counts, n=5):
     return sorted(counts.items(), key=lambda kv: kv[1], reverse=True)[:n] 
 
 def task3():
-    start = time.time()
+    start = time.time()             #record the current time so we can see how long the code takes
 
     from collections import defaultdict
     counts = defaultdict(int)           #create a dictionary to keep track of ips
@@ -37,20 +37,20 @@ def task3():
                     counts[ip] +=1
 
     #get top 5 attackers
-    top_attackers = top_n(counts, 5)
+    top_attackers = top_n(counts, 5)        #top_n is a function that takes a dict "counts" and 5 is bc we want the top 5
 
     print("Top 5 attacker ips:")        #print top 5
     for rank, (ip, count) in enumerate(top_attackers, 1):
         print(f"{rank}. {ip} - {count}")
 
     #export to file failed_counts.txt
-    with open("failed_counts.txt", "w")as file:
+    with open("failed_counts.txt", "w")as file:     #open failed_counts and write
         file.write("ip,failed_count\n")        #write hearder
-        for ip, count in counts.items():
-            file.write(f"{ip},{count}\n")
+        for ip, count in counts.items():        #for every pair of ip and count in the counts dict. counts.items takes a dict and returns the pairs as tuples
+            file.write(f"{ip},{count}\n")       #write the ip and corresponding count
     
-    end = time.time()
-    print("Elapsed:", end-start, "seconds")
+    end = time.time()           #gets the current time again
+    print("Elapsed:", end-start, "seconds")         #end-start to get the amount of time it took to run the code
 
 task3()     #run task3
 

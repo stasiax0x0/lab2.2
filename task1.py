@@ -1,7 +1,7 @@
 
 #task 1
-def ip_parser(line):
-    if " from " in line:
+def ip_parser(line):            #define a function that has line as a parameter
+    if " from " in line:        #if " from " is the line
         parts = line.split()    #splits the line in tokens and separates by space by default
         try:
             anchor = parts.index("from")     #find where from is -> this is the anchor
@@ -18,14 +18,14 @@ def task1_2():
 #read the file "sample_auth_small.log" and find unique ips
 
     unique_ips = set()          #this creates a set
-    line_count = 0
+    line_count = 0              #initialise line_count as 0
 
     with open("sample_auth_small.log") as file:    #open the file and read and store as "file"
-        for line in file:
-            line_count +=1
-            ip = ip_parser(line)
-            if ip:
-                unique_ips.add(ip)
+        for line in file:                           #for every line in file
+            line_count +=1                          #add 1 to line_count
+            ip = ip_parser(line)                    #to find the ip in line, call the ip_parser function
+            if ip:                                  #if there's an ip in the line
+                unique_ips.add(ip)                  #add the ip to the set unique_ips
 
     sorted_ips = sorted(unique_ips)         #this converts the set into a sorted list
 

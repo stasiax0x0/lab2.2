@@ -19,14 +19,14 @@ def ip_parser(line):
 
 from collections import defaultdict
 
-def task2():
-    counts = defaultdict(int)           #create a dictionary to keep track of ips
+                     
+counts = defaultdict(int)           #create a dictionary to keep track of ips
 
-    with open("sample_auth_small.log") as file:
-        for line in file:
-            if "Failed password" in line or "Invalid user" in line:
-                ip = ip_parser(line)        #extract ip
-                if ip:
-                    counts[ip] +=1
-    print(counts)
-task2()         #run task 2
+with open("sample_auth_small.log") as file:     #open and store sample_auth_small.log as file
+    for line in file:
+        if "Failed password" in line or "Invalid user" in line:     #if failed password or invalid user is in the line
+            ip = ip_parser(line)        #extract ip by calling the function ip_parser
+            if ip:                       #if the ip is the line
+                counts[ip] +=1          #get the current count of the ip and add one to it
+print(counts)
+    
